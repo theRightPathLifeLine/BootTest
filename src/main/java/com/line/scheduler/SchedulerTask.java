@@ -28,14 +28,14 @@ public class SchedulerTask {
 
     @Scheduled(cron="*/10 * * * * ?")
     private void process(){
-        System.out.println("this is scheduler task runing  "+(count++));
+//        System.out.println("this is scheduler task runing  "+(count++));
     }
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Scheduled(initialDelay=10000, fixedRate=10000)
     public void reportCurrentTime() {
-        System.out.println("现在时间：" + dateFormat.format(new Date()));
+//        System.out.println("现在时间：" + dateFormat.format(new Date()));
         HeartBeatWork connectWork = new HeartBeatWork();
         connectMaster.excuteConcentWorker(connectWork, 3);
     }

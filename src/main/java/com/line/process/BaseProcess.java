@@ -11,6 +11,8 @@ import com.google.common.eventbus.Subscribe;
 import com.line.dao.CardResultRepository;
 import com.line.entity.CardResult;
 import com.line.eventbus.EventBusFactory;
+import com.line.msgData.ImageDataObj;
+import com.line.msgData.ResultDataObj;
 import com.line.post.ReadyPost;
 import com.line.thirdparty.hik.CameraHik;
 import com.line.thirdparty.imagelogic.Calculations;
@@ -20,6 +22,7 @@ import com.line.thirdparty.mastercontrol.ConnectMaster;
 import com.line.thirdparty.mastercontrol.worker.CameraMoveWork;
 import com.line.thirdparty.mastercontrol.worker.FinishedWork;
 import com.line.thirdparty.mastercontrol.worker.PointCorrectWork;
+import com.line.websocket.WebSocketServer;
 
 @Service
 public class BaseProcess {
@@ -49,8 +52,18 @@ public class BaseProcess {
 	private void startTest(){
 		//1.拍照  推送界面
 		String img = cameraHik.takePhoto();
+		ImageDataObj dataObj = new ImageDataObj("http://127.0.0.1:7001/img/" + img);
+		WebSocketServer.sendMsg(dataObj.toString());
 		//2.调算法 校验图片  生成照片 推送前台
 		// TODO
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ResultDataObj obj = new ResultDataObj("");
+		WebSocketServer.sendMsg(obj.toString());
 		//3. 校验结果处理
 		// TODO
 		Date date = new Date();
@@ -70,6 +83,8 @@ public class BaseProcess {
 			result.setContrary(r.nextInt(4));
 		}
 		cardResultRepository.save(result);
+		dataObj = new ImageDataObj("http://127.0.0.1:7001/img/result3.jpg");
+		WebSocketServer.sendMsg(dataObj.toString());
 		
 		
 	}
@@ -79,8 +94,6 @@ public class BaseProcess {
 		for (int i = 0; i < 60; i++) {
 			System.out.println(r.nextInt(2));
 		}
-		
-		
 	}
 
 	private void testStart() {

@@ -14,8 +14,6 @@ public class ConsoleDataObj extends AbsMsgObj{
 
     private String color;
 
-    private MsgType msgType;
-
     public ConsoleDataObj() {
     }
     public ConsoleDataObj(String data, String color, MsgType msgType) {

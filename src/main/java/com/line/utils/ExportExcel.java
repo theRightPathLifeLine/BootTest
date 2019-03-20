@@ -86,7 +86,7 @@ public class ExportExcel {
 	 * @param fileName
 	 */
 	public void exportConsisterLogReport(List<CardDateStatisticsDto> rects,
-			String fileName, int size) {
+			String fileName, List<CardPointStatisticsDto> rects1) {
 		WritableWorkbook book = null;
 		try {
 			book = Workbook.createWorkbook(new File(fileName));
@@ -96,6 +96,17 @@ public class ExportExcel {
 			sheet.setColumnView(2, 20);
 			sheet.setColumnView(3, 20);
 			sheet.setColumnView(4, 20);
+			sheet.setColumnView(5, 20);
+			sheet.setColumnView(6, 20);
+			sheet.setColumnView(7, 20);
+			sheet.setColumnView(8, 20);
+			sheet.setColumnView(9, 20);
+			sheet.setColumnView(10, 20);
+			sheet.setColumnView(11, 20);
+			sheet.setColumnView(12, 20);
+			sheet.setColumnView(13, 20);
+			
+			
 			
 			sheet.addCell(new Label(0, 0, "日期", titleFormat));
 			sheet.addCell(new Label(1, 0, "检查产品数量", titleFormat));
@@ -115,6 +126,38 @@ public class ExportExcel {
 				sheet.addCell(new Label(3, startRow, rect.getUnpass() + "",
 						normalFormat));
 				sheet.addCell(new Label(4, startRow, rect.getRate() + "",
+						normalFormat));
+				startRow++;
+			}
+			
+
+			sheet.addCell(new Label(6, 0, "检测点数", titleFormat));
+			sheet.addCell(new Label(7, 0, "良品器件个数", titleFormat));
+			sheet.addCell(new Label(8, 0, "不良器件个数", titleFormat));
+			sheet.addCell(new Label(9, 0, "错料", titleFormat));
+			sheet.addCell(new Label(10, 0, "漏件", titleFormat));
+			sheet.addCell(new Label(11, 0, "反向", titleFormat));
+			sheet.addCell(new Label(12, 0, "多件", titleFormat));
+			sheet.addCell(new Label(13, 0, "不良率", titleFormat));
+
+			startRow = 1;
+			for (int i = 0; i < rects1.size(); i++) {
+				CardPointStatisticsDto rect = rects1.get(i);
+				sheet.addCell(new Label(6, startRow, rect.getPoint() + "",
+						normalFormat));
+				sheet.addCell(new Label(7, startRow, rect.getPass() + "",
+						normalFormat));
+				sheet.addCell(new Label(8, startRow, rect.getUnpass() + "",
+						normalFormat));
+				sheet.addCell(new Label(9, startRow, rect.getError() + "",
+						normalFormat));
+				sheet.addCell(new Label(10, startRow, rect.getMiss() + "",
+						normalFormat));
+				sheet.addCell(new Label(11, startRow, rect.getContrary() + "",
+						normalFormat));
+				sheet.addCell(new Label(12, startRow, rect.getMore() + "",
+						normalFormat));
+				sheet.addCell(new Label(13, startRow, rect.getRate() + "",
 						normalFormat));
 				startRow++;
 			}

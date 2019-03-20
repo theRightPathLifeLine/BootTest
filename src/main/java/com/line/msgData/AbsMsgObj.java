@@ -3,6 +3,8 @@ package com.line.msgData;
 
 import java.io.Serializable;
 
+import com.line.msgData.mete.MsgType;
+
 import net.sf.json.JSONObject;
 
 /**
@@ -10,7 +12,23 @@ import net.sf.json.JSONObject;
  */
 public abstract class AbsMsgObj  implements Serializable {
 
-    public String toString() {
+	protected MsgType msgType;
+	
+	
+	
+    public MsgType getMsgType() {
+		return msgType;
+	}
+
+
+
+	public void setMsgType(MsgType msgType) {
+		this.msgType = msgType;
+	}
+
+
+
+	public String toString() {
         return JSONObject.fromObject(this).toString();
     }
 }

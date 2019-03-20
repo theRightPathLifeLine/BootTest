@@ -47,15 +47,15 @@ public class CardResultRepositoryTests {
 //	   	   cardResult.setDate(date);
 //	   	   cardResultRepository.save(cardResult);
 //       }
-//       for (int i = 0; i < 100; i++) {
-//    	   CardResult cardResult = new CardResult();
-//    	   Date date = new Date();
-//    	   date.setDate(21);
-//	   	   String name = sdf.format(date) + ".jpg";
-//	   	   cardResult.setImageName(name);
-//	   	   cardResult.setDate(date);
-//	   	   cardResultRepository.save(cardResult);
-//       }
+       for (int i = 0; i < 100; i++) {
+    	   CardResult cardResult = new CardResult();
+    	   Date date = new Date();
+    	   date.setDate(26);
+	   	   String name = sdf.format(date) + ".jpg";
+	   	   cardResult.setImageName(name);
+	   	   cardResult.setDate(date);
+	   	   cardResultRepository.save(cardResult);
+       }
     	List<Object[]> list = cardResultRepository.findbyDay();
     	for (Object[] objects : list) {
 			CardDateStatisticsDto dto = new CardDateStatisticsDto((String)objects[0], ((BigInteger)objects[1]).intValue(), ((BigDecimal)objects[2]).intValue());

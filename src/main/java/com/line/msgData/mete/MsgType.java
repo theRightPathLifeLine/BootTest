@@ -18,6 +18,8 @@ public enum MsgType {
     ANIMOTESTA_MSG("组网动画状态信息"),
     NODESTATUS_MSG("节点实时状态"),
     ROUT_MSG("七级中继消息"),
+    IMG_MSG("图片消息"),
+    RESULT_MSG("校验消息"),
     TWOROUT_MSG("二层组合消息");
 
 
